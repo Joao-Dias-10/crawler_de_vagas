@@ -1,0 +1,10 @@
+# Python
+.env
+**/__pycache__/
+
+# Logs
+logs/
+*.log
+
+# VSCode
+.vscode/
