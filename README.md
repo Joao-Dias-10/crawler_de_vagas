@@ -1,22 +1,48 @@
 # 🔍 Crawler de Vagas no LinkedIn
 
-Este é um projeto automatizado para **mineração de dados** (web scraping) que coleta vagas de emprego publicadas no LinkedIn, utilizando a automação do Selenium para garantir a extração eficiente e precisa das informações.
-
-As vagas são coletadas com base em uma palavra-chave (ex: "Python remoto"), processadas, limpas e armazenadas automaticamente em um banco de dados **PostgreSQL**. O sistema foi desenvolvido para ser **eficiente**, **escalável** e **sem duplicações**.
+Projeto de **web scraping automatizado** com Selenium para coleta de vagas de emprego publicadas no LinkedIn. Os dados são processados e armazenados em um banco de dados PostgreSQL, com foco em robustez, testes e boas práticas de desenvolvimento.
 
 ## 🚀 Funcionalidades
 
-- **Coleta automatizada**: O crawler utiliza o **Selenium** para navegar nas páginas do LinkedIn e coletar as vagas mais recentes relacionadas à palavra-chave configurada.
-- **Limpeza de dados**: Usando **Pandas**, o sistema trata e normaliza os dados coletados, removendo duplicatas e garantindo a qualidade das informações.
-- **Banco de dados PostgreSQL**: As vagas são armazenadas de maneira otimizada no **PostgreSQL**, com tabelas criadas automaticamente através de **SQLAlchemy** e verificações de duplicação para manter a integridade dos dados.
-- **Execução eficiente**: O sistema foi projetado para ser rápido e eficaz, garantindo que apenas as vagas mais recentes e relevantes sejam coletadas, sem registros duplicados.
-- **Logs de execução**: O sistema registra logs detalhados de cada execução, facilitando a identificação de erros e o monitoramento do desempenho.
+- 🔎 **Busca automatizada de vagas** com Selenium com base em palavra-chave (ex: `"Python remoto"`).
+- 🧼 **Limpeza e normalização** dos dados com Pandas.
+- 🧠 **Verificação de duplicatas** com SQLAlchemy ORM, utilizando filtros e consultas otimizadas antes da inserção no banco de dados.
+- 🗃️ **Armazenamento estruturado em PostgreSQL**, usando **SQLAlchemy ORM**.
+- 🧪 **Testes unitários** com `pytest` e `unittest.mock`.
+- 🪵 **Logs persistentes** para rastrear execuções e erros.
+
+---
 
 ## 🧑‍💻 Como Executar o Projeto
 
-### 1. **Instalar as dependências**
+### 1. Clonar o repositório
 
-Primeiro, você precisa instalar as dependências necessárias para o projeto. Certifique-se de ter o **Python 3.8 ou superior** instalado em sua máquina. Depois, instale as dependências do projeto:
+```
+git clone https://github.com/Joao-Dias-10/crawler_de_vagas.git
+cd crawler_de_vagas
+```
 
-```bash
+### 2. Criar e ativar o ambiente virtual
+
+```
+python -m venv .venv
+source .venv/bin/activate  # ou .venv\Scripts\activate no Windows
+```
+
+### 3. Instalar as dependências
+
+```
 pip install -r requirements.txt
+```
+
+### 4. Configurar variáveis de ambiente
+Configure O arquivo .env:
+
+```
+DATABASE_URL=postgresql://usuario:senha@localhost:port/nome_do_banco
+USER_LINKEDIN=seu_email
+PASSWORD_LINKEDIN=sua_senha
+```
+
+
+
