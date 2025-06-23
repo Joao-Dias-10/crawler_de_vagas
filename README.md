@@ -9,7 +9,7 @@ Projeto de **web scraping automatizado** com Selenium para coleta de vagas de em
 - 🧠 **Verificação de duplicatas** com SQLAlchemy ORM, utilizando filtros e consultas otimizadas.
 - 🗃️ **Armazenamento estruturado em PostgreSQL**, usando **SQLAlchemy ORM**.
 - 🧪 **Testes unitários** com `pytest` e `unittest.mock`.
-- 🪵 **Logs persistentes** para rastrear execuções e erros.
+- 📁 **Logs persistentes** para rastrear execuções e erros.
 
 ---
 
@@ -35,8 +35,7 @@ source .venv/bin/activate  # ou .venv\Scripts\activate no Windows
 pip install -r requirements.txt
 ```
 
-### 4. Configurar variáveis de ambiente
-Configure O arquivo .env:
+### 4. Configurar variáveis de ambiente (.env)
 
 ```
 DATABASE_URL=postgresql://usuario:senha@localhost:port/nome_do_banco
