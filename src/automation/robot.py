@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+import selenium.webdriver.support.ui as ui
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
@@ -14,7 +14,7 @@ from src.utils.configsAll import *
 
 def coletar_vagas(palavra_chave):
     driver = webdriver.Chrome()
-    wait = WebDriverWait(driver, 30)
+    wait = ui.WebDriverWait(driver, 30)
     driver.get("https://www.linkedin.com/login/pt")
     driver.maximize_window()
 
