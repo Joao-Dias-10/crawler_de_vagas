@@ -6,7 +6,7 @@ Projeto de **web scraping automatizado** com Selenium para coleta de vagas de em
 
 - 🔎 **Busca automatizada de vagas** com Selenium com base em palavra-chave (ex: `"Python remoto"`).
 - 🧼 **Limpeza e normalização** dos dados com Pandas.
-- 🧠 **Verificação de duplicatas** com SQLAlchemy ORM, utilizando filtros e consultas otimizadas antes da inserção no banco de dados.
+- 🧠 **Verificação de duplicatas** com SQLAlchemy ORM, utilizando filtros e consultas otimizadas.
 - 🗃️ **Armazenamento estruturado em PostgreSQL**, usando **SQLAlchemy ORM**.
 - 🧪 **Testes unitários** com `pytest` e `unittest.mock`.
 - 🪵 **Logs persistentes** para rastrear execuções e erros.
