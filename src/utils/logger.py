@@ -17,4 +17,5 @@ logging.basicConfig(
 )
 
 # Logger fixo com nome padronizado
-default_logger = logging.getLogger("app")  # 'app' será o nome que aparece nos logs
+default_logger = logging.getLogger("app")
+default_logger.setLevel(logging.DEBUG) 
