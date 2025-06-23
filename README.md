@@ -2,7 +2,7 @@
 
 Projeto de **web scraping automatizado** com Selenium para coleta de vagas de emprego publicadas no LinkedIn. Os dados são processados e armazenados em um banco de dados PostgreSQL, com foco em robustez, testes e boas práticas de desenvolvimento.
 
-## 🤖 Funcionalidades
+## Funcionalidades
 
 - 🔎 **Busca automatizada de vagas** com `Selenium` com base em palavra-chave (ex: "Python remoto").
 - 🧼 **Limpeza e normalização** dos dados com `Pandas`.
@@ -11,9 +11,9 @@ Projeto de **web scraping automatizado** com Selenium para coleta de vagas de em
 - 🧪 **Testes unitários** com `pytest` e `unittest.mock`.
 - 📁 **`Logs` persistentes** para rastrear execuções e erros.
 
----
 
-## 👨🏾‍💻 Como Executar o Projeto 
+
+## Como Executar o Projeto 
 
 ### 1. Clonar o repositório
 
