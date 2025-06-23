@@ -8,9 +8,9 @@ Projeto de **web scraping automatizado** com Selenium para coleta de vagas de em
 - 🧼 **Limpeza e normalização** dos dados com `Pandas`.
 - 🧠 **Verificação de duplicatas** com SQLAlchemy ORM, utilizando `filtros e consultas otimizadas`.
 - 🗃️ **Armazenamento estruturado em PostgreSQL**, usando `SQLAlchemy ORM`.
-- 🧪 **Testes unitários** com `pytest` e `unittest.mock`.
-- 📁 **`Logs` persistentes** para rastrear execuções e erros.
-
+- 🧪 **Testes unitários** com `pytest` e `unittest.mock`.   
+- 📁 **`Logs**` persistentes** para rastrear execuções e erros.
+- 📒  **`Notebook*` Jupyter adaptativo**, criado para facilitar o desenvolvimento incremental do crawler com Selenium. Permite executar etapas isoladamente. Ideal para estudo, debugging e reprocessamento controlado de dados sem comprometer o fluxo principal.
 
 
 ## Como Executar o Projeto 
