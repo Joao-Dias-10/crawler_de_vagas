@@ -10,7 +10,7 @@ Projeto de **web scraping automatizado** com Selenium para coleta de vagas de em
 - 🗃️ **Armazenamento estruturado em PostgreSQL**, usando `SQLAlchemy ORM`.
 - 🧪 **Testes unitários** com `pytest` e `unittest.mock`.   
 - 📁 **`Logs` persistentes** para rastrear execuções e erros.
-- 📒  **`Notebook Jupyter`**, colocado para facilitar o desenvolvimento incremental do crawler com Selenium. Permite executar etapas isoladamente. Ideal para estudo, debugging na fase de criação, além de não comprometer o fluxo principal
+- 📒  **`Notebook Jupyter`**, colocado para facilitar o desenvolvimento incremental do crawler com Selenium. Permite executar etapas isoladamente. Ideal para estudo, debugging na fase de criação, além de não comprometer o fluxo principal.
 
 
 ## Como Executar o Projeto 
