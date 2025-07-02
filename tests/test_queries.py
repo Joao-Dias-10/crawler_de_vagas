@@ -1,8 +1,7 @@
 import pytest
 from unittest.mock import MagicMock
-from src.db.queries import inserir_vagas_no_banco, vaga_existe
+from src.db.queries import VagaDBManager 
 from src.db.models import VagaEmprego
-
 
 # ------------------------
 # Teste da função: inserir_vagas_no_banco
@@ -21,9 +20,15 @@ def test_inserir_vagas_no_banco_nova_vaga():
         "url": "https://exemplo.com/vaga"
     }
 
-    inserir_vagas_no_banco(mock_db, vaga)
+    # Instanciando o VagaDBManager
+    vaga_db_manager = VagaDBManager(mock_db)
 
-    mock_db.add.assert_called()
+    # Chama o método para inserir a vaga no banco
+    vaga_db_manager.inserir_vagas_no_banco(vaga)
+
+    # Verifica se o método add foi chamado para adicionar a nova vaga
+    mock_db.add.assert_called_once()
+    # Verifica se o commit foi chamado uma vez
     mock_db.commit.assert_called_once()
 
 
@@ -40,9 +45,15 @@ def test_inserir_vagas_no_banco_vaga_existente():
         "url": "https://exemplo.com/vaga"
     }
 
-    inserir_vagas_no_banco(mock_db, vaga)
+    # Instanciando o VagaDBManager
+    vaga_db_manager = VagaDBManager(mock_db)
 
+    # Chama o método para tentar inserir a vaga no banco
+    vaga_db_manager.inserir_vagas_no_banco(vaga)
+
+    # Verifica se o método add **não** foi chamado, pois a vaga já existe
     mock_db.add.assert_not_called()
+    # Verifica se o commit **não** foi chamado
     mock_db.commit.assert_not_called()
 
 
@@ -59,7 +70,13 @@ def test_vaga_existe_true():
         url="https://exemplo.com"
     )
 
-    resultado = vaga_existe(mock_db, "Dev", "Empresa", "SP")
+    # Instanciando o VagaDBManager
+    vaga_db_manager = VagaDBManager(mock_db)
+
+    # Chama a função para verificar se a vaga existe
+    resultado = vaga_db_manager.vaga_existe("Dev", "Empresa", "SP")
+
+    # Verifica se o resultado é True, pois a vaga foi encontrada
     assert resultado is True
 
 
@@ -67,5 +84,11 @@ def test_vaga_existe_false():
     mock_db = MagicMock()
     mock_db.query().filter().first.return_value = None
 
-    resultado = vaga_existe(mock_db, "Dev", "Empresa", "SP")
+    # Instanciando o VagaDBManager
+    vaga_db_manager = VagaDBManager(mock_db)
+
+    # Chama a função para verificar se a vaga existe
+    resultado = vaga_db_manager.vaga_existe("Dev", "Empresa", "SP")
+
+    # Verifica se o resultado é False, pois a vaga não foi encontrada
     assert resultado is False

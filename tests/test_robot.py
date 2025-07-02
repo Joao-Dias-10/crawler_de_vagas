@@ -1,8 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
+from src.automation.robot import VagaColetor  # Agora importamos a classe
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
-from src.automation.robot import coletar_vagas
 
 @pytest.fixture
 def mock_webdriver():
@@ -26,7 +25,8 @@ def mock_os_getenv():
             "PASSWORD_LINKEDIN": "test_password"
         }.get(x)
         yield
-        
+
+# Teste para o sucesso da coleta de vagas
 def test_coletar_vagas_sucesso(mock_webdriver, mock_wait, mock_os_getenv):
     mock_user_element = MagicMock()
     mock_password_element = MagicMock()
@@ -58,8 +58,13 @@ def test_coletar_vagas_sucesso(mock_webdriver, mock_wait, mock_os_getenv):
 
     mock_wait.until.side_effect = side_effects
 
-    vagas = coletar_vagas("Python remoto")
+    # Instanciando a classe VagaColetor
+    coletor = VagaColetor(user="test_user", password="test_password")
 
+    # Chama o método de coleta de vagas
+    vagas = coletor.coletar_vagas("Python remoto")
+
+    # Verifica se o número de vagas coletadas é 5
     assert len(vagas) == 5
     assert vagas[0]["titulo"] == "Título Vaga 1"
     assert vagas[0]["empresa"] == "Empresa 1"
@@ -68,6 +73,9 @@ def test_coletar_vagas_sucesso(mock_webdriver, mock_wait, mock_os_getenv):
     assert vagas[4]["titulo"] == "Título Vaga 5"
     assert vagas[4]["url"] == "http://url5.com"
 
+    # Verifica se os campos de login estão sendo preenchidos
     mock_user_element.send_keys.assert_called_with("test_user")
     mock_password_element.send_keys.assert_any_call("test_password")
+
+    # Verifica se o método quit foi chamado no driver
     mock_webdriver.quit.assert_called_once()

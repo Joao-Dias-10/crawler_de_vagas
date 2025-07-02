@@ -1,32 +1,43 @@
-from src.automation.robot import coletar_vagas
-from src.preprocessing.limpeza import limpar_vagas
+from src.automation.robot import VagaColetor
+from src.preprocessing.limpeza import VagaLimpeza
 from src.db.connection import conectar_db
-from src.db.queries import inserir_vagas_no_banco
-from src.utils.logger import default_logger as logger
-from src.db.init_db import create_table
+from src.db.queries import VagaDBManager
+from src.utils.logger import LoggerConfig
+from src.db.init_db import DatabaseManager
+
 
 def run():
     try:
+        # Configuração do logger
+        log_config = LoggerConfig(log_path='./logs', log_filename='execucao.log', log_level='DEBUG')
+        logger = log_config.get_logger()
+
         logger.info("Criando tabelas se não existirem.")
-        create_table()
+        db_manager = DatabaseManager()  # Instanciando a classe DatabaseManager para criação de tabelas
+        db_manager.create_table()  # Chamando o método create_table() para garantir que as tabelas existam
 
         logger.info("Iniciando coleta de vagas.")
-        vagas_raw = coletar_vagas("Python remoto")
+        coletor = VagaColetor()  # Instanciando o VagaColetor para coletar vagas
+        vagas_raw = coletor.coletar_vagas("Python remoto")
 
         logger.info("Limpando as vagas coletadas.")
-        vagas_limpas = limpar_vagas(vagas_raw)
+        limpador = VagaLimpeza(vagas_raw)  # Limpando as vagas
+        vagas_limpas = limpador.limpar_vagas()
 
         logger.info(f"{len(vagas_limpas)} vagas após limpeza.")
 
         logger.info("Conectando ao banco e inserindo vagas.")
         with conectar_db() as db:
+            # Instanciando o VagaDBManager com a conexão de banco de dados
+            vaga_db_manager = VagaDBManager(db) 
             for vaga in vagas_limpas:
-                inserir_vagas_no_banco(db, vaga)
+                vaga_db_manager.inserir_vagas_no_banco(vaga)  # Inserindo as vagas no banco
 
         logger.info("Processo finalizado com sucesso!\n\n")
 
     except Exception as e:
         logger.error(f"Erro registrado: {e}\n\n", exc_info=True)
+
 
 if __name__ == "__main__":
     run()

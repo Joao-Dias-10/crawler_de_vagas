@@ -1,20 +1,28 @@
+# src/db/queries.py
 from src.db.models import VagaEmprego
 from sqlalchemy.orm import Session
 
-def vaga_existe(db: Session, titulo: str, empresa: str, localizacao: str) -> bool:
-    return db.query(VagaEmprego).filter(
-        VagaEmprego.titulo == titulo,
-        VagaEmprego.empresa == empresa,
-        VagaEmprego.localizacao == localizacao
-    ).first() is not None
+class VagaDBManager:
+    def __init__(self, db: Session):
 
-def inserir_vagas_no_banco(db: Session, vaga: dict):
-    if not vaga_existe(db, vaga["titulo"], vaga["empresa"], vaga["localizacao"]):  
-        nova_vaga = VagaEmprego(
-            titulo=vaga["titulo"],
-            empresa=vaga["empresa"],
-            localizacao=vaga["localizacao"],
-            url=vaga["url"]
-        )
-        db.add(nova_vaga)
-        db.commit()
+        self.db = db
+
+    def inserir_vagas_no_banco(self, vaga: dict) -> None:
+
+        if not self.vaga_existe(vaga["titulo"], vaga["empresa"], vaga["localizacao"]):
+            nova_vaga = VagaEmprego(
+                titulo=vaga["titulo"],
+                empresa=vaga["empresa"],
+                localizacao=vaga["localizacao"],
+                url=vaga["url"]
+            )
+            self.db.add(nova_vaga)
+            self.db.commit()
+
+    def vaga_existe(self, titulo: str, empresa: str, localizacao: str) -> bool:
+     
+        return self.db.query(VagaEmprego).filter(
+            VagaEmprego.titulo == titulo,
+            VagaEmprego.empresa == empresa,
+            VagaEmprego.localizacao == localizacao
+        ).first() is not None
