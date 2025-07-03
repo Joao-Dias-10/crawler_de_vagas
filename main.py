@@ -7,13 +7,8 @@ from src.db.init_db import DatabaseManager
 
 def run():
     try:
-        # Logger personalizado (nome "app" ou outro se quiser)
-        log_config = LoggerConfig(
-            log_path='./logs',
-            log_filename='execucao.log',
-            log_level='DEBUG',
-            logger_name='app'  # você pode trocar para outro nome se desejar
-        )
+        
+        log_config = LoggerConfig(log_path='./logs',log_filename='execucao.log',log_level='DEBUG',logger_name='app' )
         logger = log_config.configurar()
 
         logger.info("Criando tabelas se não existirem.")
