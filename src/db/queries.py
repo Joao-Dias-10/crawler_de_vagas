@@ -1,4 +1,3 @@
-# src/db/queries.py
 from src.db.models import VagaEmprego
 from sqlalchemy.orm import Session
 

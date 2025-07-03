@@ -1,11 +1,11 @@
 import logging
-from src.utils.logger import default_logger
+from src.utils.logger import LoggerConfig
 
-def test_default_logger_exists():
-    # Verifica se o logger é uma instância de logging.Logger e se o nome é 'app'
-    assert isinstance(default_logger, logging.Logger)
-    assert default_logger.name == "app"
+def test_logger_exists():
+    logger = LoggerConfig(logger_name="test-logger").configurar()
+    assert isinstance(logger, logging.Logger)
+    assert logger.name == "test-logger"
 
-def test_default_logger_level():
-    # Verifica se o nível de log é INFO ou DEBUG
-    assert default_logger.level == logging.INFO or default_logger.getEffectiveLevel() == logging.DEBUG
+def test_logger_level():
+    logger = LoggerConfig(log_level="DEBUG", logger_name="test-logger").configurar()
+    assert logger.level == logging.DEBUG or logger.getEffectiveLevel() == logging.DEBUG
