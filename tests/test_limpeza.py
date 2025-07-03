@@ -1,4 +1,3 @@
-import pytest
 from src.preprocessing.limpeza import VagaLimpeza 
 
 def test_limpar_vagas():
@@ -18,7 +17,7 @@ def test_limpar_vagas():
         }
     ]
 
-    # Agora você instancia a classe VagaLimpeza
+    # Instancia a classe VagaLimpeza
     limpador = VagaLimpeza(entrada)  # Passando a entrada para a classe
     resultado = limpador.limpar_vagas()  # Chamando o método de limpeza
 

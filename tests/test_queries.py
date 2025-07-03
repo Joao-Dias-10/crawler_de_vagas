@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import MagicMock
 from src.db.queries import VagaDBManager 
 from src.db.models import VagaEmprego

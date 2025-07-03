@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from src.automation.robot import VagaColetor  # Agora importamos a classe
+from src.automation.robot import VagaColetor 
 from selenium.webdriver.common.by import By
 
 @pytest.fixture
@@ -26,7 +26,6 @@ def mock_os_getenv():
         }.get(x)
         yield
 
-# Teste para o sucesso da coleta de vagas
 def test_coletar_vagas_sucesso(mock_webdriver, mock_wait, mock_os_getenv):
     mock_user_element = MagicMock()
     mock_password_element = MagicMock()
@@ -40,7 +39,7 @@ def test_coletar_vagas_sucesso(mock_webdriver, mock_wait, mock_os_getenv):
         mock_ul_element,
     ]
 
-    # Agora adicionamos 4 mocks para cada uma das 5 vagas
+    # Adiciona 4 mocks para cada uma das 5 vagas
     for i in range(1, 6):
         mock_title = MagicMock()
         mock_title.text = f"Título Vaga {i}"
