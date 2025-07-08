@@ -1,5 +1,6 @@
 # 🔍 Crawler de Vagas no LinkedIn
 
+
 Projeto de **web scraping automatizado** com Selenium para coleta de vagas de emprego publicadas no LinkedIn. Os dados são processados e armazenados em um banco de dados PostgreSQL, com foco em robustez, testes e boas práticas de desenvolvimento.
 
 ## Funcionalidades
